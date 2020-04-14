@@ -1,0 +1,84 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Online File Saver</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'header.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+  
+</head>
+
+<body>
+  
+<nav>
+  <div>
+  <img src="/static/images/MIT.png" width=230 height=100 >
+  <ul style="font-size:30px;">
+    
+    
+    
+    {% if name %}
+    <li><a href="/upload" style="padding-right:30px;">Upload</a></li>
+    <li style="color:greenyellow;">{{ name }},<a class="login" href="/logout/" style="padding-right:30px;color: red;"><b> Log Out</b></a></li>
+    {% else %}
+    <li><a class="login" href="#" data-toggle="modal" data-target="#login" style="padding-right:30px;">Log In</a></li>
+    {% endif %}
+  </ul>
+  </div>
+ 
+</nav>
+<header>
+  <div class="headline">
+    <div class="inner">
+      <h1>Departmental Portal</h1>
+      <p>Common place to share files</p>
+    </div>
+  </div>
+
+  <div class="login">
+			<!-- Modal -->
+					<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="signinlabel" aria-hidden="true">
+					  <div class="modal-dialog signin_popup" role="document">
+						<div class="modal-content col-xl-9">
+						  <div class="modal-body">
+							  <div class="login_name">
+								Log In
+							  </div>
+                           <form  signin_form method="post" action="/login/">
+									{% csrf_token %}
+							  <div class="form-group">
+								<input type="email" class="form-control" name="email_id" id="signin_email" aria-describedby="emailHelp" placeholder=" email">
+							  </div>
+							  <div class="form-group">
+								<input type="password" class="form-control" name="password" id="signin_pass" placeholder="Password">
+							  </div>
+							  <input type="Submit" class="btn btn-success btn_login" value="Log In" name="login">
+								<div class="or">or</div>
+               <div class="btn_signup" style="padding-bottom:3%;"><a role="button" href="/register" class="btn btn-success ">Register</a></div>
+							</form>
+					  </div>
+						</div>
+					  </div>
+					</div>
+				</div>
+		</div>
+
+</header>
+
+
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+    <script src="{% static 'header.js' %}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+</body>
+</html>
